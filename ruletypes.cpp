@@ -167,6 +167,16 @@ namespace cs427_527
 
     // Mystery Rules	
 
+    AllSum_Fixed::AllSum_Fixed(int f)
+    {
+	fixed = f;
+    }
+
+    int AllSum_Fixed::points(DiceRoll roll, Scoresheet sheet)
+    {
+	return roll.total() + fixed;
+    }
+
     bool TwoPair::applyPoints(DiceRoll roll)
     {
 	bool check = false;
@@ -200,7 +210,7 @@ namespace cs427_527
     {
 	int l = 5;
 
-	for(int i = start; i < l; i++)
+	for(int i = start; i <= l; i++)
 	{
 	    if(roll.count(i) == 0)
 	    {
@@ -215,7 +225,7 @@ namespace cs427_527
     {
 	for(int i = 0; i < roll.NUM_SIDES; i++)
 	{
-	    if(roll.count(i) != 1)
+	    if(roll.count(i) > 1)
 	    {
 		return false;
 	    }

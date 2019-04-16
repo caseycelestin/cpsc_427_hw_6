@@ -99,6 +99,15 @@ namespace cs427_527
 
     // Mystery Rules
     
+    class AllSum_Fixed : public PointAmount
+    {
+    public:
+	AllSum_Fixed(int f);
+	virtual int points(DiceRoll, Scoresheet);
+    private:
+	int fixed;
+    };
+
     class TwoPair : public RuleCheck
     {
     public:

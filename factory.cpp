@@ -79,14 +79,18 @@ namespace cs427_527
 	
 	ruleList.push_back(Rule(string("Full House"), string("FH"), make_shared<Fixed>(25), make_shared<FullHouse>(), true));
 
-	ruleList.push_back(Rule(string("Low Straight"), string("LS"), make_shared<Fixed>(25), make_shared<YortStraight>(0), true));
+	ruleList.push_back(Rule(string("Low Straight"), string("LS"), make_shared<Fixed>(25), make_shared<YortStraight>(1), true));
 
-	ruleList.push_back(Rule(string("High Straight"), string("HS"), make_shared<Fixed>(25), make_shared<YortStraight>(1), true));
+	ruleList.push_back(Rule(string("High Straight"), string("HS"), make_shared<Fixed>(25), make_shared<YortStraight>(2), true));
 
-
-
+	ruleList.push_back(Rule(string("Yatzie"), string("Y"), make_shared<AllSum_Fixed>(30), make_shared<OfAKind>(5), true));
 
 	ruleList.push_back(Rule(string("Chance"), string("C"), make_shared<AllSum>(), make_shared<NoCheck>(), true));
+
+	ruleList.push_back(Rule(string("Yortzie"), string("Z"), make_shared<Fixed>(15), make_shared<Yortzie>(), true));
+
+
+	ruleList.push_back(Rule(string("GRAND TOTAL"), string("GT"), make_shared<Total>(), make_shared<NoCheck>(), false));
 	
 	return YahtzeeGame(ruleList);
     }
