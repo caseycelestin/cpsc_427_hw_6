@@ -6,6 +6,7 @@
 #include <vector>
 
 using std::vector;
+using std::make_shared;
 
 namespace cs427_527
 {
@@ -154,7 +155,7 @@ namespace cs427_527
 
     bool OfAKind::applyPoints(DiceRoll roll)
     {
-	for(int i = 1; i < roll.NUM_SIDES; i++)
+	for(int i = 1; i <= roll.NUM_SIDES; i++)
 	{
 	    if(roll.count(i) >= number)
 	    {
@@ -177,10 +178,49 @@ namespace cs427_527
 	return roll.total() + fixed;
     }
 
+    Tiered::Tiered(vector<int> v, vector<int> t)
+    {
+	values = v;
+	thresh = t;
+    }
+
+    int Tiered::points(DiceRoll roll, Scoresheet sheet)
+    {
+	int total = 0;
+	vector<int> scores = sheet.getScores();
+	for(int i = 0; i < roll.NUM_SIDES; i++)
+	{
+	    int add = scores[i];
+	    if(add == -1)
+	    {
+		add = 0;
+	    }
+
+	    total += add;
+	}
+	if(total < thresh[0])
+	{
+	    return 0;
+	}
+
+	int i = 1;
+	for(auto it = values.begin(); it < values.end() - 1; it++)
+	{
+	    if(total < thresh[i])
+	    {
+		return *it;
+	    }
+	    i++;
+	}
+	return values[i-1];
+    }
+
+ 
+
     bool TwoPair::applyPoints(DiceRoll roll)
     {
 	bool check = false;
-	for(int i = 1; i < roll.NUM_SIDES; i++)
+	for(int i = 1; i <= roll.NUM_SIDES; i++)
 	{
 	    if(roll.count(i) > 3)
 	    {
@@ -223,7 +263,7 @@ namespace cs427_527
 
     bool Yortzie::applyPoints(DiceRoll roll)
     {
-	for(int i = 0; i < roll.NUM_SIDES; i++)
+	for(int i = 0; i <= roll.NUM_SIDES; i++)
 	{
 	    if(roll.count(i) > 1)
 	    {

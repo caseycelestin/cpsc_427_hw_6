@@ -71,6 +71,8 @@ namespace cs427_527
 
 	ruleList.push_back(Rule(string("Sixes"), string("6"), make_shared<OneSum>(6), make_shared<NoCheck>(), true));
 
+	ruleList.push_back(Rule(string("UPPER BONUS"), string("UB"), make_shared<Tiered>(vector<int>{15,35,55,75}, vector<int>{42,63,84,105}), make_shared<NoCheck>(), false));
+
 	ruleList.push_back(Rule(string("Two Pair"), string("2P"), make_shared<AllSum>(), make_shared<TwoPair>(), true));
 	
 	ruleList.push_back(Rule(string("Three of a Kind"), string("3K"), make_shared<AllSum>(), make_shared<OfAKind>(3), true));

@@ -3,9 +3,11 @@
 
 #include <string>
 #include <memory>
+#include <vector>
 
 using std::string;
 using std::shared_ptr;
+using std::vector;
 
 namespace cs427_527
 {
@@ -103,10 +105,21 @@ namespace cs427_527
     {
     public:
 	AllSum_Fixed(int f);
-	virtual int points(DiceRoll, Scoresheet);
+	virtual int points(DiceRoll, Scoresheet) override;
     private:
 	int fixed;
     };
+
+    class Tiered : public PointAmount
+    {
+    public:
+	Tiered(vector<int> v, vector<int> t);
+	virtual int points(DiceRoll, Scoresheet) override;
+    private:
+	vector<int> values;
+	vector<int> thresh;
+    };
+
 
     class TwoPair : public RuleCheck
     {
