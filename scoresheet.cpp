@@ -111,6 +111,35 @@ namespace cs427_527
 	return out;
     }
 
+    int Scoresheet::getTotal() const
+    {
+	int total = 0;
+
+	for(auto it = score.begin(); it < score.end() - 1; it++)
+	{
+	    int add = (*it).first;
+	    if(add == -1)
+	    {
+		add = 0;
+	    }
+	    total += add;
+	}
+
+	return total;
+    }
+
+    bool Scoresheet::isUsed(string s) const
+    {
+	for(auto it = unused.begin(); it < unused.end(); it++)
+	{
+	    if((*it).second == s)
+	    {
+		return !((*it).first);
+	    }
+	}
+	return true;
+    }
+
     ostream& operator<<(ostream& os, const Scoresheet& sheet)
     {
 	sheet.output(os);

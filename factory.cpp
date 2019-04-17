@@ -75,24 +75,25 @@ namespace cs427_527
 
 	ruleList.push_back(Rule(string("Two Pair"), string("2P"), make_shared<AllSum>(), make_shared<TwoPair>(), true));
 	
-	ruleList.push_back(Rule(string("Three of a Kind"), string("3K"), make_shared<AllSum>(), make_shared<OfAKind>(3), true));
+	ruleList.push_back(Rule(string("Three of a Kind"), string("3X"), make_shared<AllSum>(), make_shared<OfAKind>(3), true));
 
-	ruleList.push_back(Rule(string("Four of a Kind"), string("4K"), make_shared<AllSum>(), make_shared<OfAKind>(4), true));
+	ruleList.push_back(Rule(string("Four of a Kind"), string("4X"), make_shared<AllSum>(), make_shared<OfAKind>(4), true));
 	
 	ruleList.push_back(Rule(string("Full House"), string("FH"), make_shared<Fixed>(25), make_shared<FullHouse>(), true));
 
 	ruleList.push_back(Rule(string("Low Straight"), string("LS"), make_shared<Fixed>(25), make_shared<YortStraight>(1), true));
 
-	ruleList.push_back(Rule(string("High Straight"), string("HS"), make_shared<Fixed>(25), make_shared<YortStraight>(2), true));
+	ruleList.push_back(Rule(string("High Straight"), string("HS"), make_shared<Fixed>(30), make_shared<YortStraight>(2), true));
 
 	ruleList.push_back(Rule(string("Yatzie"), string("Y"), make_shared<AllSum_Fixed>(30), make_shared<OfAKind>(5), true));
 
 	ruleList.push_back(Rule(string("Chance"), string("C"), make_shared<AllSum>(), make_shared<NoCheck>(), true));
 
-	ruleList.push_back(Rule(string("Yortzie"), string("Z"), make_shared<Fixed>(15), make_shared<Yortzie>(), true));
+	ruleList.push_back(Rule(string("Yortzee"), string("Z"), make_shared<Fixed>(15), make_shared<Yortzie>(), true));
 
+	ruleList.push_back(Rule(string("YORTZEE BONUS"), string("ZB"), make_shared<ZBonus>(5), make_shared<NoCheck>(), false));
 
-	ruleList.push_back(Rule(string("GRAND TOTAL"), string("GT"), make_shared<Total>(), make_shared<NoCheck>(), false));
+	//ruleList.push_back(Rule(string("GRAND TOTAL"), string("GT"), make_shared<Total>(), make_shared<NoCheck>(), false));
 	
 	return YahtzeeGame(ruleList);
     }

@@ -120,6 +120,18 @@ namespace cs427_527
 	vector<int> thresh;
     };
 
+    class ZBonus : public PointAmount
+    {
+    public:
+	ZBonus(int a);
+	virtual int points(DiceRoll, Scoresheet) override;
+    private:
+	int adder;
+	int count;
+	shared_ptr<RuleCheck> applyRule; 
+	string str;
+	int prevScore;
+    };
 
     class TwoPair : public RuleCheck
     {

@@ -302,8 +302,8 @@ void test_scoring(const YahtzeeGame& game)
       
       // get and display unused categories
       vector<string> options = sheet.unusedCategories();
-      copy(options.begin(), options.end(), ostream_iterator<string>(cout, " "));
-      cout << endl;
+      //copy(options.begin(), options.end(), ostream_iterator<string>(cout, " "));
+      //cout << endl;
 
 
       // read chooses a category
@@ -321,7 +321,7 @@ void test_scoring(const YahtzeeGame& game)
       // mark score
       game.scoreRoll(roll, cat, sheet);
 
-      cout << sheet << endl;
+      //cout << sheet << endl;
     }
 
   // game over, output final scoresheet and total

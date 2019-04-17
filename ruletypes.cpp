@@ -72,20 +72,7 @@ namespace cs427_527
 
     int Total::points(DiceRoll, Scoresheet sheet)
     {
-	vector<int> scores = sheet.getScores();
-	int total = 0;
-
-	for(auto it = scores.begin(); it < scores.end() - 1; it++)
-	{
-	    int add = *it;
-	    if(add == -1)
-	    {
-		add = 0;
-	    }
-	    total += add;
-	}
-
-	return total;
+	return sheet.getTotal();
     }
 
     bool NoCheck::applyPoints(DiceRoll roll)
@@ -215,7 +202,43 @@ namespace cs427_527
 	return values[i-1];
     }
 
- 
+    ZBonus::ZBonus(int a)
+    {
+	adder = a;
+	count = -5;
+	applyRule = make_shared<Yortzie>();
+	str = "Z";
+	prevScore = 0;
+    }
+
+    int ZBonus::points(DiceRoll roll, Scoresheet sheet)
+    {
+	bool used = sheet.isUsed(str);
+	if(used)
+	{
+	    if(applyRule->applyPoints(roll))
+	    {
+		if(!(count < 0))
+		{
+		   if(sheet.getTotal() > prevScore)
+		    {
+			count += adder;
+			adder += 5;
+		    }
+		}
+		else
+		{
+		    count = 0;
+		}
+	    }
+	}
+	prevScore = sheet.getTotal();
+	if(count < 0)
+	{
+	    return 0;
+	}
+	return count;
+    }
 
     bool TwoPair::applyPoints(DiceRoll roll)
     {
@@ -249,13 +272,15 @@ namespace cs427_527
     bool YortStraight::applyPoints(DiceRoll roll)
     {
 	int l = 5;
+	int index = start;
 
-	for(int i = start; i <= l; i++)
+	for(int i = 0; i < l; i++)
 	{
-	    if(roll.count(i) == 0)
+	    if(roll.count(index) == 0)
 	    {
 		return false;
 	    }
+	    index++;
 	}
 
 	return true;

@@ -32,6 +32,10 @@ namespace cs427_527
 
 	vector<int> getScores() const;
 
+	int getTotal() const;
+
+	bool isUsed(string) const;
+
     private:
 	vector<pair<int, string>> score;
 	
