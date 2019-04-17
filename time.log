@@ -1,0 +1,15 @@
+ESTIMATE of time to complete assignment: 6 hours
+
+        Time     Time
+  Date  Started  Spent  Work Completed
+  ----  -------  -----  --------------
+  4/15  18:20    1:20   Read new rules and began implementing two pair, low straight and high straight rules
+  4/16  8:00     0:40   Implemented Yatzie and Yortzee and partially debugges low straight and high straight
+  4/16  18:20    1:40   Implemented and debugged tiered upper bonus
+  4/16  20:00    2:40   Implemented Yortzee Bonus then debugged whole program against public test cases
+                 ----
+                 6:20   TOTAL time spent
+
+  I discussed my solution with: N/A
+
+  Difficulties: Overall fairly simple, I had set up my yahtzee so not much needed to be changed. I added some functions to help reduce redundant code. Some of the new rules were tricky to implement, that is where I spent most of my time.
